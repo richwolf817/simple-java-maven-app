@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                sh 'aws lambda update-function-code --function-name ZipTest --zip-file fileb://target/my-app-1.0-SNAPSHOT.jar'
             }
         }
     }
