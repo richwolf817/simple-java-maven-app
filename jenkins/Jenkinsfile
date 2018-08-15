@@ -10,6 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                sh '/usr/bin/aws --version'
             }
         }
         stage('Test') {
@@ -24,7 +25,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh '~/.local/bin/aws lambda update-function-code --function-name ZipTest --zip-file fileb://var/lib/jenkins/workspace/simple-java-maven-app/target/my-app-1.0-SNAPSHOT.jar'
+                sh '/usr/bin/aws lambda update-function-code --function-name ZipTest --zip-file fileb://var/lib/jenkins/workspace/simple-java-maven-app/target/my-app-1.0-SNAPSHOT.jar'
             }
         }
     }
